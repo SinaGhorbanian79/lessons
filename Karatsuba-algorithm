@@ -1,0 +1,24 @@
+def prod(u, v):
+    u = int(u)
+    v = int(v)
+    if u == 0 or v == 0:
+        return 0
+    n = max(len(str(u)), len(str(v)))
+    if n <= 1:
+        return u * v
+    m = n // 2
+    x = u // (10**m)
+    y = u % (10**m)
+    w = v // (10**m)
+    z = v % (10**m)
+    return (
+        prod(x, w) * (10 ** (2 * m))
+        + (prod(x, z) + prod(w, y)) * (10**m)
+        + prod(y, z)
+    )
+
+
+u = input("please enter the first number: ")
+v = input("please enter the second number: ")
+result = prod(u, v)
+print(result)
